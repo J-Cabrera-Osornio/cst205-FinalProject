@@ -1,4 +1,5 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, url_for
+from flask import request
 from flask_bootstrap import Bootstrap
 import requests, json
 from pprint import pprint
@@ -9,19 +10,20 @@ bootstrap = Bootstrap(app)
 
 
 url = "http://openlibrary.org/search.json"
-isbn_url = "https://openlibrary.org/isbn/9780140328721.json"
 
-querystring = {"q":"animorphs"}
+
+querystring = {"q":"Animorphs"}
 response = requests.request("GET", url, params=querystring)
 library = response.json()
 
-#pprint(library['docs'][0]['title'])
+isbn = {}
 
-mydict = {}
+isbn = library['docs']
 
-mydict = library['docs'][0]['title']
 
-@app.route('/')
+@app.route('/library')
 def lib():
-    return render_template('library.html', value=mydict)
+    return render_template('library.html', value=isbn)
+
+
 
