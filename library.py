@@ -16,14 +16,14 @@ querystring = {"q":"Animorphs"}
 response = requests.request("GET", url, params=querystring)
 library = response.json()
 
-isbn = {}
+value = {}
+value = library['docs']
 
-isbn = library['docs']
 
 
 @app.route('/library')
 def lib():
-    return render_template('library.html', value=isbn)
+    return render_template('library.html', value=value)
 
 
 
