@@ -21,6 +21,10 @@
     body {
       background-color: lightyellow;
     }
+
+    div{
+      width: 500px;
+    }
     </style>
   <br>
   <title>Library</title>
@@ -28,61 +32,42 @@
 
 
 <body>
-    <center><h1 class="display-1">Welcome to the library.</h1></center>
-    <center>
+ 
 
+  {% for i in value %} 
+  
+  <br><br>
+  <div class="container" style="background-color: lightyellow;">
       
-        {% for i in value %}
-        
+          <div id="book" style="background-color: white;">
+                {% if 'subtitle' in value[loop.index] %}
+                <center><a href="https://openlibrary.org/books/{{value[loop.index]['text'][0]}}/Animorphs"><h3>{{value[loop.index]['subtitle']}}</h3></a></center>
+                  
+                {% elif 'title' in value[i] %}
+                <center><a href="https://openlibrary.org/books/{{value[loop.index]['text'][0]}}/Animorphs"><h3>{{value[loop.index]['title']}}</h3></a></center>
+                  
+                {%endif%}
+                <center><button type="button" class="btn btn-light btn-lg" data-toggle="modal" data-target="#myModal"><img src="http://covers.openlibrary.org/b/isbn/{{value[loop.index]['isbn'][0]}}-L.jpg" class="rounded" height="450" width="350"/></button></center>
+                  <center><h4>Franchise: {{value[loop.index]['title']}}</h4>
 
-          {% if 'first_sentence' in i %}
+                  {% if "author_name" in value[loop.index]%}
+                    Author: {{value[loop.index]["author_name"]}}<br>
 
-          <div class="container">
-            <h3>{{ i.title }}</h3>
-            <button type="button" class="btn btn-light btn-lg" data-toggle="modal" data-target="#myModal"><img src="http://covers.openlibrary.org/b/isbn/{{ i.isbn.0 }}-L.jpg" class="rounded" height="450" width="350"/></button>
-            
-          
-            
-            <div class="modal fade" id="myModal" role="dialog">
-              <div class="modal-dialog">
-              
-                
-                <div class="modal-content">
-                  <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title">{{ i.title }}</h4>
-                  </div>
-                  <div class="modal-body">
+                  {% elif "author_alternative_name" in value[loop.index] %}  
+                    Author: {{value[loop.index]["author_alternative_name"][0]}}<br>
+                  {% endif %}  
 
-
-                    <h5>Title: {{ i.title }}</h5>
-                    <h5>{{i.first_sentence}}</h5>
-                    <h5>Language: {{ i.language }}</h5>
-                    <h5>ISBN: {{i.isbn }}</h5>
-                    <h5>Publisher: {{ i.publisher }}</h5>
-                    <h5>Publication date: {{i.publish_date}}</h5>
-                    
-                     
-                  </div>
-                  <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                  </div>
-                </div>
-                
-              </div>
-            </div>
-            
+                  Language: {{value[loop.index]['language']}}<br>
+                  Publish date: {{value[loop.index]['first_publish_year']}}<br> 
+                  Isbn: {{ value[loop.index]['text'][0] }}<br>
+                  Text: {{value[loop.index]['text'][2]}}<br> 
+                  </center>
+                  
+                {% endfor %}
           </div>
-
-          {% endif %}
-
-          <br><br>
-        {% endfor %}
-         
+       
+  </div><br><br>
 
 
-
-
-  </center>
 </body>
 </html>
