@@ -1,3 +1,9 @@
+##Contributor: Jim O. Cabrera
+# Team: 26
+# CST 205: Multimedia Design
+# May 17, 2021 
+# 
+# #
 from flask import Flask, render_template, url_for
 from flask import request
 from flask_bootstrap import Bootstrap
@@ -10,11 +16,11 @@ from bs4 import BeautifulSoup
 app = Flask(__name__)
 bootstrap = Bootstrap(app)
 
-
+#Api is taken from OpenLibrary.com, specifically the search api.
 url = "http://openlibrary.org/search.json"
 
-
-querystring = {"q":"captainunderpants"}
+#The queryString gets the value
+querystring = {"q":"captain underpants"}
 response = requests.request("GET", url, params=querystring)
 library = response.json()
 jason = {}
