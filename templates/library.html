@@ -1,0 +1,85 @@
+<!--
+  Contributor Name: Jim Cabrera
+  Sources: https://www.youtube.com/watch?v=9MHYHgh4jYc&t=596s
+-->
+
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <style>
+    .center {
+      margin: auto;
+      width: 20%;
+      padding: 10px;
+    }
+
+    body {
+      background-color: lightyellow;
+    }
+
+    div{
+      width: 500px;
+    }
+    </style>
+  <br>
+  <title>Library</title>
+</head>
+
+
+<body>
+  
+
+  {% for i in value %}
+    {% if 'isbn' in value[i] %}
+    
+      <center><h4>{{value[i]['title']}}</h4></center>
+      <div class="container" style="background-color: white;"></div>
+      <center><button type="button" class="btn btn-light btn-lg" data-toggle="modal" data-target="#myModal"><img src="http://covers.openlibrary.org/b/isbn/{{value[i]['isbn'][0]}}-L.jpg" class="rounded" height="450" width="350"/></button>
+      
+        <div class="modal fade" id="myModal" role="dialog">
+          <div class="modal-dialog">
+          
+            
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">{{value[i]['title']}}</h4> 
+              </div>
+              <div class="modal-body">
+                <iframe src="https://openlibrary.org/works/{{ value[i]['text'][0]}}" title="W3Schools Free Online Web Tutorials" height="500" width="600"></iframe>
+
+                 
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+              </div>
+            </div>
+            
+          </div>
+        </div>
+      </center>
+        <center>
+          <h4>Author: {{value[i]['author_name'][0]}}</h4>
+           <h5>          
+              Language: {{value[i]['language']}}<br>
+              Publish date: {{value[i]['first_publish_year']}}<br> 
+              Isbn: {{value[i]['isbn'][0]}} <br>
+              <a href="https://openlibrary.org/works/{{ value[i]['text'][0]}}" target="_blank">Click me to visit site</a></h5>
+              
+        </div><br><br>
+        </center>
+      {% endif %}
+
+   {% endfor %}
+
+
+
+
+
+</body>
+</html>
