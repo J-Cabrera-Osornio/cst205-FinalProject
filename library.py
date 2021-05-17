@@ -14,26 +14,32 @@ bootstrap = Bootstrap(app)
 url = "http://openlibrary.org/search.json"
 
 
-querystring = {"q":"Animorphs"}
+querystring = {"q":"captainunderpants"}
 response = requests.request("GET", url, params=querystring)
 library = response.json()
+jason = {}
+
+jason = library['docs']
 
 new_dict = {}
 def preprocess(my_info):
   i = 0
-  while i < 100:
-    if 'isbn' in my_info['docs'][i]:
-      new_dict[i] = my_info['docs'][i]
+  while i < 26:
+    if 'isbn' in my_info[i]:
+      new_dict[i] = my_info[i]
       i += 1
     else:
       i += 1      
 
   return new_dict  
 
-preprocess(library)
+preprocess(jason)
+
+
 
 for i in new_dict:
-  pprint(new_dict[i]['isbn'])
+  pprint(new_dict[i]['isbn'][0])
+
 @app.route('/library')
 def lib():
     return render_template('library.html', value=new_dict)

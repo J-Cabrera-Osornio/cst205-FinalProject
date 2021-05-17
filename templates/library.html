@@ -32,41 +32,31 @@
 
 
 <body>
- 
-
-  {% for i in value %} 
   
-  <br><br>
-  <div class="container" style="background-color: lightyellow;">
-      
-          <div id="book" style="background-color: white;">
-                {% if 'subtitle' in value[loop.index] %}
-                <center><a href="https://openlibrary.org/books/{{value[loop.index]['text'][0]}}/Animorphs"><h3>{{value[loop.index]['subtitle']}}</h3></a></center>
-                  
-                {% elif 'title' in value[i] %}
-                <center><a href="https://openlibrary.org/books/{{value[loop.index]['text'][0]}}/Animorphs"><h3>{{value[loop.index]['title']}}</h3></a></center>
-                  
-                {%endif%}
-                <center><button type="button" class="btn btn-light btn-lg" data-toggle="modal" data-target="#myModal"><img src="http://covers.openlibrary.org/b/isbn/{{value[loop.index]['isbn'][0]}}-L.jpg" class="rounded" height="450" width="350"/></button></center>
-                  <center><h4>Franchise: {{value[loop.index]['title']}}</h4>
 
-                  {% if "author_name" in value[loop.index]%}
-                    Author: {{value[loop.index]["author_name"]}}<br>
+  {% for i in value %}
+    {% if 'isbn' in value[i] %}
+    
+      <center><h4>{{value[i]['title']}}</h4></center>
+      <div class="container" style="background-color: white;"></div>
+      <center><button type="button" class="btn btn-light btn-lg" data-toggle="modal" data-target="#myModal"><img src="http://covers.openlibrary.org/b/isbn/{{value[i]['isbn'][0]}}-L.jpg" class="rounded" height="450" width="350"/></button></center>
+      <center>
+        
+          <h4>Author: {{value[i]['author_name'][0]}}</h4>
+           <h5>          
+              Language: {{value[i]['language']}}<br>
+              Publish date: {{value[i]['first_publish_year']}}<br> 
+              Isbn: {{value[i]['isbn'][0]}} <br>
+              <a href="https://openlibrary.org/works/{{ value[i]['text'][0]}}" target="_blank">Click me to visit site</a></h5>
 
-                  {% elif "author_alternative_name" in value[loop.index] %}  
-                    Author: {{value[loop.index]["author_alternative_name"][0]}}<br>
-                  {% endif %}  
+        </div><br><br>
+        </center>
+      {% endif %}
 
-                  Language: {{value[loop.index]['language']}}<br>
-                  Publish date: {{value[loop.index]['first_publish_year']}}<br> 
-                  Isbn: {{ value[loop.index]['text'][0] }}<br>
-                  Text: {{value[loop.index]['text'][2]}}<br> 
-                  </center>
-                  
-                {% endfor %}
-          </div>
-       
-  </div><br><br>
+   {% endfor %}
+
+
+
 
 
 </body>
