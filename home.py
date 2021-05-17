@@ -1,4 +1,7 @@
-#Date 5/5/21
+# Author: Timothy Johnson
+# Date 5/5/21
+# 
+# Transcribe the .wav file to get the 
 
 from flask import Flask, render_template, request, redirect
 from flask_bootstrap import Bootstrap
