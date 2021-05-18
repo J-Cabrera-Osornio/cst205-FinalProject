@@ -1,8 +1,7 @@
-# Team: 26
-# Team Members: Jim O. Cabrera, Timothy Johnson, Andrea Sanchez, Geoffrey Vasaya
-# Contributor: Timothy Johnson
-# CST 205: Multimedia Design
-# May 17, 2021 
+# Author: Timothy Johnson
+# Date 5/5/21
+# 
+# Transcribe the .wav file to get the 
 
 from flask import Flask, render_template, request, redirect
 from flask_bootstrap import Bootstrap
