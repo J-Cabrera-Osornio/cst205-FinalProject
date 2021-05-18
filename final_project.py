@@ -1,8 +1,8 @@
-
+# Author: Geoffrey Vasaya
 # Team: 26
 # CST 205: Multimedia Design
 # May 17, 2021 
-# Abstract: 
+# Abstract: The backend code of the create music playlist.
 from flask import Flask, render_template, redirect,request,
 from flask_bootstrap import Bootstrap
 from flask_wtf import FlaskForm
