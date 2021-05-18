@@ -1,7 +1,9 @@
 # Author: Timothy Johnson
-# Date 5/5/21
-# 
-# Transcribe the .wav file to get the 
+# Github: https://github.com/J-Cabrera-Osornio/cst205-FinalProject
+# Team 26: Jim O. Cabrera, Timothy Johnson, Andrea Sanchez, Geoffrey Vasaya
+# CST 205: Multimedia Design
+# May 17, 2021 
+# Abstract: Transcribe the .wav file to get the text.
 
 from flask import Flask, render_template, request, redirect
 from flask_bootstrap import Bootstrap
