@@ -30,7 +30,7 @@
  When you click the image, the modal will pop up and display the image, you can click out of it by clicking on the books since the modal only takes up half the screen.
  
  
-  <h4>Wav Web Search:</h4>
+  <h4>Web Search:</h4>
  Andrea could not get the search function to work so it is not linked to the home page. 
  
   <h4>Create Playlist:</h4>
