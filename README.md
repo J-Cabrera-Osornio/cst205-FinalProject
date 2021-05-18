@@ -1,6 +1,6 @@
 # cst205-FinalProject
 
-<h3>Spoof Voice Assistant</h3>
+<h2>Spoof Voice Assistant</h2>
 
 <h4>Names of team members:</h4> Jim O. Cabrera, Geoffrey Vasaya, Timothy Johnson
 
