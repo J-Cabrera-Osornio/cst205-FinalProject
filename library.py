@@ -2,15 +2,13 @@
 # Team: 26
 # CST 205: Multimedia Design
 # May 17, 2021 
-# 
+# abstract: This part of the app is a library app that connects to the Open Library Search API 
+# to display images and information on books. 
 # #
 from flask import Flask, render_template, url_for
 from flask import request
 from flask_bootstrap import Bootstrap
 import requests, json
-from pprint import pprint
-import webbrowser
-from bs4 import BeautifulSoup
 
 
 app = Flask(__name__)
@@ -19,14 +17,28 @@ bootstrap = Bootstrap(app)
 #Api is taken from OpenLibrary.com, specifically the search api.
 url = "http://openlibrary.org/search.json"
 
-#The queryString gets the value
-querystring = {"q":"captain underpants"}
+#Here are a small sample of books and words to use through search api.
+listOBooks = ['CapTain UnderPants', 'animOrphs', 'Game of Thrones', 'Twilight', "cats"]
+book = listOBooks[0].lower()
+
+#querystring = {"q": "Captain Underpants"} #unomment and type in to write string manually
+querystring = {"q": book}
 response = requests.request("GET", url, params=querystring)
 library = response.json()
+
 jason = {}
-
 jason = library['docs']
-
+# def preproccess reused from previous Homework.
+# I struggled a lot trying to figure out how to extract the api information. I initially thoughgt it would be simple
+# since I had done it many time before in other classes but I keep making the same mistake of understimating how tricky
+# it is to extract the information.
+# 
+# At first, I tried to use a for loop and it worked but I struggled to fetch the isbn part of the api. This
+# api is not the cleanest and most organized, most information is organized exactly where it is but other data is 
+# scrambled and unreliable to call on at times. OpenLibrary did state that their api was not stable and
+# thus to make it easier for myself, I used a while loop to filter out results with isbn in the same index
+# to avoid errors. 
+# #
 new_dict = {}
 def preprocess(my_info):
   i = 0
@@ -42,15 +54,6 @@ def preprocess(my_info):
 preprocess(jason)
 
 
-
-for i in new_dict:
-  pprint(new_dict[i]['isbn'][0])
-
 @app.route('/library')
 def lib():
     return render_template('library.html', value=new_dict)
-
-
-@app.route('/display')
-def disp():
-  return render_template('display.html', value=new_dict)

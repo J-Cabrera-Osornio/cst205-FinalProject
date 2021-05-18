@@ -1,5 +1,10 @@
 <!--
-  Contributor Name: Jim Cabrera
+  Team Members: Jim O. Cabrera, Timothy Johnson, Andrea Sanchez, Geoffrey Vasaya
+  Contributor Name: Jim Cabrera 
+  Team: 26
+  CST 205: Multimedia Design
+  May 17, 2021 
+  Abstract: The front end of the library app. This is where the books covers are displayed.
   Sources: https://www.youtube.com/watch?v=9MHYHgh4jYc&t=596s
 -->
 
@@ -32,11 +37,16 @@
 
 
 <body>
-  
-
+  <center><h1>Welcome to the Library</h1></center>
+  <center>  <h3><input type="text" placeholder="Search.."><button type="submit">Submit</button></h3></center>
+<!--I filtered the data by isbn but somehow I still kept getting errors, so I decided to filter by isbn once more
+    and the errors went away.
+-->
   {% for i in value %}
     {% if 'isbn' in value[i] %}
     
+    <!--Modal was taken from bootstrap. I couldn't get the dictionary values to appear inside the modal
+    and I took longer than I should to get them to spit out relevant information.-->
       <center><h4>{{value[i]['title']}}</h4></center>
       <div class="container" style="background-color: white;"></div>
       <center><button type="button" class="btn btn-light btn-lg" data-toggle="modal" data-target="#myModal"><img src="http://covers.openlibrary.org/b/isbn/{{value[i]['isbn'][0]}}-L.jpg" class="rounded" height="450" width="350"/></button>
@@ -51,7 +61,9 @@
                 <h4 class="modal-title">{{value[i]['title']}}</h4> 
               </div>
               <div class="modal-body">
-                <iframe src="https://openlibrary.org/works/{{ value[i]['text'][0]}}" title="W3Schools Free Online Web Tutorials" height="500" width="600"></iframe>
+                <!--I attempted to try and open the webpage in the modal and this was the best I could do
+                    In the end, the Iframe works but only outside the modal and the modal strangely only covers half the screen.-->
+                <iframe src="https://openlibrary.org/works/{{ value[i]['text'][0]}}" title="Open Library" height="500" width="600"></iframe>
 
                  
               </div>
@@ -63,11 +75,17 @@
           </div>
         </div>
       </center>
+
+      <!--The solution to keep data consistent and not all be the first value of the dictionary was 
+          to place them outside of the modal and in a div container to kept them together. 
+        -->
         <center>
            <h5>          
               Language: {{value[i]['language']}}<br>
               Publish date: {{value[i]['first_publish_year']}}<br> 
               Isbn: {{value[i]['isbn'][0]}} <br>
+              
+              <!--Link opens tab outside assignment!-->
               <a href="https://openlibrary.org/works/{{ value[i]['text'][0]}}" target="_blank">Click me to visit site</a></h5>
               
         </div><br><br>
